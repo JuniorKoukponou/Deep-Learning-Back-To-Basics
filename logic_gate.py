@@ -19,7 +19,7 @@ def CreateOneLayer(X, n_neurones):
 
 def model(_model_):
     if 'x' not in _model_ :
-        with tf.variable_scope(_model_+"layer1"):
+        with tf.variable_scope(_model_+"layer1", reuse = tf.AUTO_REUSE):
             model = CreateOneLayer(X, 1)
     else :
         print("\nDealing with a <X...> model ... \n")
@@ -100,7 +100,7 @@ def visualise(span, vals) :
 
 if __name__ == '__main__' :
     
-    _model_ = 'xor'
+    _model_ = 'or'
 
     tf.reset_default_graph()
     g = tf.Graph()
@@ -131,7 +131,7 @@ if __name__ == '__main__' :
         y_train = np.array([[0], 
                             [1],
                             [1], 
-                            [0]])
+                            [1]])
                             
                                 
         train(X_train, y_train, 500, _model_ = _model_)
